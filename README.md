@@ -27,9 +27,45 @@ On return:
 - `transpiled` is a string containing the newly-transpiled text, or the empty string if errors occurred
 - `errorMessage` is a string, empty if the transpilation fully succeeded, else containing the text of an error message.
 
+# Usage - HTML
+```
+<script src="https://unpkg.com/ohm-js@16/dist/ohm.min.js"></script>
+...
+<script src="transpile/fmt-js.js"></script>
+<script src="transpile/transpile.js"></script>
+```
+## Multigit
+Include this repository using `multigit`.
+
+Use `multigit -r` to fetch the library into your project after ensuring that `.gitignore` and `subrepos` are correctly configured (see below).
+
+### .gitignore
+Add `transpile/` to your project's `.gitignore` file.
+
+### subrepos
+Create a file `subrepos` that contains the lines
+```
+subrepos:
+- path: 'transpile'
+  repo: 'git@github.com:guitarvydas/transpile.git'
+  branch: 'main'
+```
+
+## Node.js
+To load the required functions in a node.js program, use the following code:
+
+```
+const ohm = require ('ohm-js');
+const fmt = require ('transpile/fmt-js.js');
+const transpiler = require ('transpile/transpile.js')
+...
+	  [success, transpiled, errormessage] = transpile (src, grammarName, grammar, fabspec, ohm, fmt.compilefmt, supportFileName);
+...
+```
+
 # Warts
-- historically, this used to be called fmt-js
-	- clean up needed to rename fmt-js.* to transpile
+- historically, this used to be called `fmt-js`
+	- clean up needed to rename `fmt-js.*` to `transpile`
 - historically, this function has been split into two files
 	- `fmt-js.js`
 	- `transpile.js`
@@ -38,4 +74,5 @@ On return:
 - Ohm-JS documentation https://ohmjs.org
 - a REPL for language/grammar development https://ohmjs.org/editor/
 - example usage Parsing Explorer https://github.com/guitarvydas/parsingexplorer
-- example usage Fab Explorer *
+- example usage Fab Explorer https://github.com/guitarvydas/fabx
+- `multigit` https://pypi.org/project/multigit/ (sane use of `git` for using sub-repositories)
