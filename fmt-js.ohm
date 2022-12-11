@@ -1,0 +1,18 @@
+FMT {
+top = spaces name spaces "{" rule+ "}" spaces
+rule = applySyntactic<RuleLHS> spaces "=" spaces rewriteString
+RuleLHS = name "[" Param+ "]"
+rewriteString = "‛" char* "’" spaces
+char =
+  | "⟨" name "⟩" -- eval
+  | ~"’" ~"]]" any     -- raw
+name = letter nameRest*
+nameRest = "_" | alnum
+Param =
+  | name "+" -- plus
+  | name "*" -- star
+  | name "?" -- opt
+  | name     -- flat
+comment = "//" (~"\n" any)* "\n"
+space += comment
+}
