@@ -34,7 +34,20 @@ On return:
 <script src="transpile/fmt-js.js"></script>
 <script src="transpile/transpile.js"></script>
 ```
-## Multigit
+
+# Usage - Node.js
+To load the required functions in a node.js program, use the following code:
+
+```
+const ohm = require ('ohm-js');
+const fmt = require ('transpile/fmt-js.js');
+const transpiler = require ('transpile/transpile.js')
+...
+	  [success, transpiled, errormessage] = transpile (src, grammarName, grammar, fabspec, ohm, fmt.compilefmt, supportFileName);
+...
+```
+
+# Usage - Including This Repo In A Project
 Include this repository using `multigit`.
 
 Use `multigit -r` to fetch the library into your project after ensuring that `.gitignore` and `subrepos` are correctly configured (see below).
@@ -49,18 +62,6 @@ subrepos:
 - path: 'transpile'
   repo: 'git@github.com:guitarvydas/transpile.git'
   branch: 'main'
-```
-
-## Node.js
-To load the required functions in a node.js program, use the following code:
-
-```
-const ohm = require ('ohm-js');
-const fmt = require ('transpile/fmt-js.js');
-const transpiler = require ('transpile/transpile.js')
-...
-	  [success, transpiled, errormessage] = transpile (src, grammarName, grammar, fabspec, ohm, fmt.compilefmt, supportFileName);
-...
 ```
 
 # Warts
