@@ -1,4 +1,4 @@
-![[transpile.png]]
+![transpile](doc/transpile.png)
 A DSL for writing DSLs.
 
 Transpile() is a library function for transpilation.
